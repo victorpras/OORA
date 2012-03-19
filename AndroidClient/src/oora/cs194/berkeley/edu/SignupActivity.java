@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class OORAActivity extends Activity {
+public class SignupActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.signup);
         
-        Button store = (Button) findViewById(R.id.welcomeButton);
+        Button store = (Button) findViewById(R.id.rButton);
 		store.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				
@@ -23,5 +23,7 @@ public class OORAActivity extends Activity {
 			}
 
 		});
+        
+        
     }
 }

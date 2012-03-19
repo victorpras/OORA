@@ -7,19 +7,48 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Order" 
+        android:text="Restaurant List" 
         android:id="@+id/welcome1"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dip"/>
+        android:layout_marginTop="20dip"
+        android:textSize="25sp"/>
+        
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="McDonalds" 
+        android:id="@+id/res1"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/welcome1"/>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Chipotle" 
+        android:id="@+id/res2"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/res1"/>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="KFC" 
+        android:id="@+id/res3"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/res2"/>
    
     <Button
         android:layout_width="300px"
         android:layout_height="wrap_content"
-        android:text="back" 
+        android:text="Place Order" 
         android:id="@+id/backButton"
-        android:layout_below="@+id/welcome1"        
+        android:layout_below="@+id/res3"        
         android:layout_marginTop="10dip"        
-        android:layout_centerHorizontal="true"  
+        android:layout_centerHorizontal="true" 
+        android:gravity="center_horizontal" 
             
         />
 
