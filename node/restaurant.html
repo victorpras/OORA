@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+<head>
+<title>Order</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
+
+<script>
+$(document).ready(function() {
+  now.receiveMessage = function(message) {
+    $("#messages").append("<br>" + message);
+  }
+  $("#send-button").click(function() {
+    now.distributeMessage($("#text-input").val());
+    $("#text-input").val("");
+  });
+  // on establishing 'now' connection, set server customer and allow message sending
+  now.ready(function(){
+    // Pick up list of available customer from server and populate dropdown 
+    setCustomerFromList(now.customerList);
+
+    // Pick up list of available decision from server and populate dropdown
+    setDecisionFromList(now.decisionList);
+ 		
+    // By default pick the first customer 
+    now.changeCustomer($('#server-customer').val());
+
+    // By default pick the first decision
+    now.changeDecision($('#server-decision').val());
+
+    // Connection established and restaurant set; allow costumer to start sending orders
+    $("#send-button").removeAttr('disabled');
+  });
+
+  // Change of drop down customer
+  $('#server-customer').change(function() {
+    $("#messages").html('');
+    now.changeCustomer($('#server-customer').val());
+  });
+
+  // Change of drop down decision
+  $('#server-decision').change(function() {
+    $("#messages").html('');
+    now.changeDecision($('#server-decision').val());
+  });
+});
+
+//populate the #server-decision dropdown
+function setDecisionFromList(dList) {
+  $('#server-decision').empty();
+  $.each(dList, function(key, value)
+  {
+    $('#server-decision').
+    append($("<option></option>").
+    attr("value",key).
+    text(value));
+  });
+}	
+
+// populate the #server-customer dropdown 
+function setCustomerFromList(custList) {
+  $('#server-customer').empty();
+  $.each(custList, function(key, value)
+  {   
+    $('#server-customer').
+    append($("<option></option>").
+    attr("value",key).
+    text(value)); 
+  });
+}
+</script>
+</head>
+<body>
+  <div id="messages"></div>
+  <select id="server-decision">
+    <option value="connecting" selected>Connecting...</option>	
+  </select>
+  <input type="text" id="text-input">
+  <input type="submit" value="Place Order" disabled id="send-button">
+  <select id="server-customer">
+    <option value="connecting" selected>Connecting...</option>
+  </select>   
+</body>
+</html>
