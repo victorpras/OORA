@@ -1,29 +1,28 @@
 <?php
-  //if post request
   $con = mysql_connect($server = "mysql-shared-02.phpfog.com", $username = "Custom App-35792", $password = "Asdf1234");
-  if (!$con)
-  {
+  if (!$con) {
     die('Could not connect: ' . mysql_error());
   }
-
   mysql_select_db("oora_phpfogapp_com");
 
-  $sql="INSERT INTO Order (RestaurantName, Name, Orders, Status, Comment) VALUES ('$_POST[restaurantName]','$_POST[name]','$_POST[order]'),'$_POST[status]'),'$_POST[comment]')";
-  if (!mysql_query($sql,$con))
-  {
-    die('Error: ' . mysql_error());
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sql="INSERT INTO Order (RestaurantName, Name, Orders, Status, Comment) VALUES ('$_POST[restaurantName]','$_POST[name]','$_POST[order]'),'$_POST[status]'),'$_POST[comment]')";
+    if (!mysql_query($sql,$con)) {
+      die('Error: ' . mysql_error());
+    }
+    echo "Your order has been placed. Thank you.";
   }
-  echo "1 record added";
-
-  //if get request
-  //pull from database
-
-  if( $_POST["name"] || $_POST["restaurant_name"] || $_POST["order"] )
-  {
-     echo "Hello ". $_POST['name']. ", Welcome to ". $_POST['restaurant_name']."<br />";
-     echo "Your order: ". $_POST['order']. ".";
-     exit();
+  elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $result = mysql_query("SELECT * FROM Order WHERE RestaurantName='//restaurant name'");
+    while($row = mysql_fetch_array($result)) {
+      //echo $row['FirstName'] . " " . $row['LastName'];
+      //echo "<br />";
+      //fetch all information
+    }
+    //need update??
   }
+
+  mysql_close($con);
 ?>
 
 <html>
