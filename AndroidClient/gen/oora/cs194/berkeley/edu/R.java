@@ -16,15 +16,16 @@ public final class R {
     public static final class id {
         public static final int backButton=0x7f05000f;
         public static final int loginButton=0x7f050004;
+        public static final int mapview=0x7f050010;
         public static final int password=0x7f050003;
-        public static final int rButton=0x7f050012;
+        public static final int rButton=0x7f050013;
         public static final int res1=0x7f05000c;
         public static final int res2=0x7f05000d;
         public static final int res3=0x7f05000e;
-        public static final int rpassword=0x7f050011;
+        public static final int rpassword=0x7f050012;
         public static final int text1=0x7f050000;
         public static final int text2=0x7f050002;
-        public static final int text3=0x7f050010;
+        public static final int text3=0x7f050011;
         public static final int text4=0x7f050005;
         public static final int username=0x7f050001;
         public static final int welcome1=0x7f050006;
