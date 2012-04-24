@@ -33,6 +33,21 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
+        [back setFrame:CGRectMake(100, 0, 56, 27)];
+        [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [back setImage:[UIImage imageNamed:@"iconBack"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:back];
+        self.navigationItem.leftBarButtonItem = backButton;
+        
+        UIButton *end = [UIButton buttonWithType:UIButtonTypeCustom];
+        [end setFrame:CGRectMake(100, 0, 54, 27)];
+        [end addTarget:self action:@selector(finalize) forControlEvents:UIControlEventTouchUpInside];
+        [end setImage:[UIImage imageNamed:@"iconEndNext"] forState:UIControlStateNormal];
+        UIBarButtonItem *endButton = [[UIBarButtonItem alloc] initWithCustomView:end];
+        self.navigationItem.rightBarButtonItem = endButton;
+        
+        
     }
     return self;
 }
@@ -40,17 +55,24 @@
 - (id)initWithRestaurant:(NSString*)restaurantName items:(NSArray *) menuItems{
     self = [super init];
     self.restaurant = restaurantName;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:26];
+    label.shadowColor = [UIColor colorWithWhite:0.5 alpha:0.1];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor redColor]; // change this color
+    self.navigationItem.titleView = label;
+    label.text = NSLocalizedString(restaurantName, @"");
+    [label sizeToFit];
     self.items = menuItems;
     self.navigationItem.title=restaurantName;
-    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Finalize" style:UIBarButtonItemStylePlain target:self action:@selector(finalize)];
-    self.navigationItem.rightBarButtonItem = next;
     check = [[NSMutableSet alloc] initWithObjects:nil];
     return self;
 }
 
 - (void)viewDidLoad
 {
-    UIImage *patternImage = [UIImage imageNamed:@"fabric_plaid.png"];
+    UIImage *patternImage = [UIImage imageNamed:@"background"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage]; 
     
     [self createTable];
@@ -60,7 +82,7 @@
 }
 
 -(void)createTable{
-    postTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height-94) style:UITableViewStylePlain];
+    postTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 16, 320, self.view.bounds.size.height-94) style:UITableViewStylePlain];
     postTable.dataSource = self;
     postTable.delegate = self;
     postTable.backgroundColor = [UIColor clearColor];
@@ -68,7 +90,9 @@
     //postTable.separatorColor = [UIColor blackColor];
     [self.view addSubview:postTable];
 }
-
+- (void)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

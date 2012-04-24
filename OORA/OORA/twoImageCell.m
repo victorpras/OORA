@@ -32,8 +32,8 @@
         [self.contentView addSubview:rightView];
         [rightView setUserInteractionEnabled:YES];   
         
-        rightcheck = [[UIImageView alloc] initWithFrame:CGRectMake(170, 21, 26, 26)];
-        rightcheck.image = [UIImage imageNamed:@"check.png"];
+        rightcheck = [[UIImageView alloc] initWithFrame:CGRectMake(170, 21, 28, 22)];
+        rightcheck.image = [UIImage imageNamed:@"ssSelected"];
         [self.contentView addSubview:rightcheck];
         rightcheck.hidden = YES;
         
@@ -41,8 +41,8 @@
         [self.contentView addSubview:leftView];
         [leftView setUserInteractionEnabled:YES];
         
-        leftcheck= [[UIImageView alloc] initWithFrame:CGRectMake(20, 21, 26, 26)];
-        leftcheck.image = [UIImage imageNamed:@"check.png"];
+        leftcheck= [[UIImageView alloc] initWithFrame:CGRectMake(20, 21, 28, 22)];
+        leftcheck.image = [UIImage imageNamed:@"ssSelected"];
         [self.contentView addSubview:leftcheck];
         leftcheck.hidden = YES;
         
