@@ -115,9 +115,33 @@
         [finalPrices addObject:[[items objectAtIndex:[num intValue]] objectForKey:@"Price"]];
         [finalItems addObject:[[items objectAtIndex:[num intValue]] objectForKey:@"Item"]];
     }
-    NSDictionary *finalOrder = [NSDictionary dictionaryWithObjects:finalPrices forKeys:finalItems];
-    OrderViewController *aa=[[OrderViewController alloc] initWithOrder:finalOrder];
-    [[self navigationController] pushViewController:aa animated:YES];
+    //NSDictionary *finalOrder = [NSDictionary dictionaryWithObjects:finalPrices forKeys:finalItems];
+    
+    //count items
+    __block NSNumber *counter;
+    counter = [NSNumber numberWithInt:1];
+    PFQuery *query = [PFQuery queryWithClassName:@"Orders"];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if (!error) {
+            // The count request succeeded. Log the count
+            NSLog(@"Sean has played %d games", count);
+            counter = [NSNumber numberWithInt:count];
+            PFObject *order = [PFObject objectWithClassName:@"Orders"];
+            [order setObject:finalItems forKey:@"Item"];
+            [order setObject:finalPrices forKey:@"Price"];
+            [order setObject:[PFUser currentUser] forKey:@"user"];
+            [order setObject:counter forKey:@"orderid"];
+            [order save];
+            
+            OrderViewController *aa=[[OrderViewController alloc] initWithOrder:counter];
+            [[self navigationController] pushViewController:aa animated:YES];
+        } else {
+            // The request failed
+        }
+    }];
+
+    
+    
 }
 
 
@@ -168,7 +192,6 @@
         cell.rightView.layer.shadowOpacity = 0.7;	
         cell.rightView.layer.shouldRasterize = YES;
         cell.rightPid = [NSNumber numberWithInt:indexPath.row*2+1];
-
     }
     cell.userInteractionEnabled = YES;
     

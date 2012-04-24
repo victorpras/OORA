@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <Parse/PFFacebookUtils.h>
 @interface OrderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, PF_FBRequestDelegate>{
-    NSArray *finalItems;
-    NSArray *finalPrices;
+    NSMutableArray *finalItems;
+    NSMutableArray *finalPrices;
     UITableView *postTable;
     PF_Facebook *facebook;
     UIImage *profile;
+    NSNumber *order;
 }
-@property(nonatomic, retain) NSArray *finalItems;
-@property(nonatomic, retain) NSArray *finalPrices;
+@property(nonatomic, retain) NSNumber *order;
+
+@property(nonatomic, retain) NSMutableArray *finalItems;
+@property(nonatomic, retain) NSMutableArray *finalPrices;
 @property (nonatomic, retain) UITableView *postTable;
 @property (nonatomic, retain) PF_Facebook *facebook;
 @property (nonatomic, retain) UIImage* profile;
-- (id)initWithOrder:(NSDictionary*)list;
+- (id)initWithOrder:(NSNumber*)list;
 -(void)createTable;
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyOrdersViewController : UIViewController
+@interface MyOrdersViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
+    UITableView *postTable;
+}
+
+@property(nonatomic, retain) UITableView *postTable;
 
 @end

@@ -8,12 +8,13 @@
 
 #import "OrderViewController.h"
 #import "CheckCell.h"
+#import <Parse/Parse.h>
 @interface OrderViewController ()
 
 @end
 
 @implementation OrderViewController
-@synthesize finalItems, finalPrices, postTable, facebook, profile;
+@synthesize finalItems, finalPrices, postTable, facebook, profile, order;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -40,10 +41,12 @@
     return self;
 }
 
-- (id)initWithOrder:(NSDictionary*)list {
+- (id)initWithOrder:(NSNumber*)list {
     self = [super init];
-    self.finalItems = [list allKeys];
-    self.finalPrices = [list allValues];
+    order = list;
+    self.finalItems = [[NSMutableArray alloc] initWithObjects: nil];
+    self.finalPrices = [[NSMutableArray alloc] initWithObjects: nil];
+
     self.navigationItem.title=@"Check";
     return self;
 }
@@ -64,8 +67,24 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage]; 
     [self createTable];
     
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemBookmarks target:self action:@selector(selectTemplate)];
+    PFQuery *query = [PFQuery queryWithClassName:@"Orders"];
+    [query whereKey:@"orderid" equalTo:order];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d scores.", objects.count);
+            for(PFObject *person in objects){
+                NSLog(@"%@", person);
+                [self.finalItems addObjectsFromArray:[person objectForKey:@"Item"]];
+                [self.finalPrices addObjectsFromArray:[person objectForKey:@"Price"]];
+            }
+            [postTable reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
     facebook = [PFFacebookUtils facebook];
     [facebook requestWithGraphPath:@"me/picture" andDelegate:self];
@@ -97,6 +116,9 @@
     button.frame = CGRectMake(80.0, 310.0, 160.0, 40.0);
     [self.view addSubview:button];
      */
+    
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
