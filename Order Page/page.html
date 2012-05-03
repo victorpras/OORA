@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Order Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script type="text/javascript">
+    $(document).ready( function() {
+      $.extend({
+		getUrlVars: function(){
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for(var i = 0; i < hashes.length; i++)
+			{
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		},
+		getUrlVar: function(name){
+		return unescape($.getUrlVars()[name]);
+		}
+	  });
+	  jQuery.ajax( {
+        url: "https://api.parse.com/1/classes/Menus",
+		headers: {
+			'X-Parse-Application-Id': 'SDPaBFP2RDeggvLdWjPhVHp0RqZGFsS6HezHzH7i',
+			'X-Parse-REST-API-Key': 'qbzEpHtD3VypUxcT5GzebytkY3NRYxUtvzY9aVr7'
+		},
+        dataType: 'json',
+        success: function(response) {
+		  var pic;
+		  var item;
+		  var price;
+		  var num = 1;
+		  for (k in response.results){
+			if (response.results[k].Name == $.getUrlVar('restName')){
+				pic = response.results[k].Picture;
+				item = response.results[k].Item;
+				price = response.results[k].Price;
+				$("#content").append('<input type="checkbox" name="checkbox-'+num+'" id="checkbox-'+num+'" class="custom" item="'+item+'" price="'+price+'" /><label for="checkbox-'+num+'"><img src="'+pic+'" width="48" height="48"/>'+item+' - '+price+'</label>');
+				num+=1;
+			}
+		  }
+		  $("#content").trigger('create');
+        }
+      });
+    });
+    </script>
+</head> 
+<body> 
+
+<div data-role="page">
+	<script>
+	function submit(){
+		var items = [];
+		var prices = [];
+		for(i=1; i<=$('#content :checkbox').length; i++){
+			if(document.getElementById("checkbox-"+i).checked==true){
+				items.push(document.getElementById("checkbox-"+i).getAttribute('item'));
+				prices.push(parseInt(document.getElementById("checkbox-"+i).getAttribute('price')));
+			}
+		}
+	  	var data1 = '{"Item": '+JSON.stringify(items)+',';
+	  	var data2 = '"Price": '+JSON.stringify(prices)+',';
+	  	var data3 = '"orderid": '+$.getUrlVar('orderID') +"}";
+	  	var dataInput =  data1 + data2 + data3 ;
+	  	console.log(dataInput);
+		jQuery.ajax( {
+        url: "https://api.parse.com/1/classes/Orders",
+        contentType: "application/json",
+		headers: {
+			'X-Parse-Application-Id': 'SDPaBFP2RDeggvLdWjPhVHp0RqZGFsS6HezHzH7i',
+			'X-Parse-REST-API-Key': 'qbzEpHtD3VypUxcT5GzebytkY3NRYxUtvzY9aVr7'
+		},
+		type: 'POST',
+        dataType: 'json',
+		data:  dataInput,
+        success: function(response) {
+			console.log(response);
+			window.location="http://dl.dropbox.com/u/12374742/submit.html"
+		}
+		});
+	  }
+	  </script>
+	<div data-role="header">
+		<h1>Order:</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	<form action="JavaScript:submit()" method="post">
+		<div data-role="fieldcontain">
+			<fieldset data-role="controlgroup" id="content">
+				
+			</fieldset>
+			<input type="submit" value="Submit"/>
+		</div>	
+	</form>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
