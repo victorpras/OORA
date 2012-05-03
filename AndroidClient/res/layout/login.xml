@@ -63,6 +63,25 @@
        
        />
     
+    <!--<RadioGroup
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_below="@+id/text4"        
+        android:layout_marginTop="10dip"
+      >
+      <RadioButton android:id="@+id/radio_red"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Login as customer"
+          android:onClick="onRadioButtonClicked"/>
+      <RadioButton android:id="@+id/radio_blue"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Login as restaurant"
+          android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>-->
+    
     
     
 </RelativeLayout>

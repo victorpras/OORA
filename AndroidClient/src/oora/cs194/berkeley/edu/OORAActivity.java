@@ -26,5 +26,16 @@ public class OORAActivity extends Activity {
 			}
 
 		});
+		
+		Button store2 = (Button) findViewById(R.id.welcomeRest);
+		store2.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				
+				Intent myIntent = new Intent(view.getContext(),
+						OrderActivity.class);
+				startActivityForResult(myIntent, 0);
+			}
+
+		});
     }
 }

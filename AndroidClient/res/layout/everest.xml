@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Mount Everest" 
+        android:id="@+id/restaurant1"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dip"
+        android:textSize="20sp"   />
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu" 
+        android:id="@+id/restaurant2"
+        
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/restaurant1"
+        android:textSize="15sp" />
+      
+    
+     <EditText
+        android:id="@+id/edit3"
+        android:layout_width="50dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant2"
+        android:layout_marginTop="10dip"
+        android:inputType="number"/>
+     
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="$8 Lunch Special" 
+        android:id="@+id/restaurant3"
+        android:layout_below="@+id/restaurant2"
+        android:layout_marginTop="10dip"
+        android:layout_toRightOf="@+id/edit3"   
+        android:layout_marginLeft="5dip"
+        android:textSize="10sp"/> 
+     
+     <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"                                                                                                        
+        android:id="@+id/image1"        
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/restaurant3" 
+        android:layout_toRightOf="@+id/edit3" 
+        android:layout_marginLeft="5dip"            
+        />
+             
+      <EditText
+        android:id="@+id/edit4"
+        android:layout_width="50dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image1"
+        android:layout_marginTop="10dip"
+        android:inputType="number"/>  
+        
+     
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="$9 Chicken Vindaloo" 
+        android:id="@+id/restaurant4"        
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/image1" 
+        android:textSize="10sp"
+        android:layout_toRightOf="@+id/edit4"   
+        android:layout_marginLeft="5dip"/>
+      
+      <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"                                                                                                    
+        android:id="@+id/image2"        
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/restaurant4" 
+        android:layout_toRightOf="@+id/edit4"   
+        android:layout_marginLeft="5dip"
+        />
+      
+      
+      <EditText
+        android:id="@+id/edit5"
+        android:layout_width="50dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image2"
+        android:layout_marginTop="10dip"
+        android:inputType="number"/>  
+        
+     
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="$9 Chicken Tikki Masala" 
+        android:id="@+id/restaurant5"        
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/image2" 
+        android:textSize="10sp"
+        android:layout_toRightOf="@+id/edit5"   
+        android:layout_marginLeft="5dip"/>
+      
+      <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"                                                                                                    
+        android:id="@+id/image3"        
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/restaurant5" 
+        android:layout_toRightOf="@+id/edit5"   
+        android:layout_marginLeft="5dip"
+        />    
+     
+      
+      
+       <Button
+        android:layout_width="300px"
+        android:layout_height="wrap_content"
+        android:text="Place Order" 
+        android:id="@+id/button1"
+        android:layout_below="@+id/image3"        
+        android:layout_marginTop="10dip"        
+        android:layout_centerHorizontal="true" 
+        android:gravity="center_horizontal" 
+        android:onClick="onClick"                
+       android:clickable="true"
+            
+        />
+    
+    
+
+
+</RelativeLayout>  

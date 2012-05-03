@@ -12,51 +12,123 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="20dip"
         android:textSize="25sp"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We found " 
+        android:id="@+id/welcome2"
+        
+        android:layout_marginTop="20dip"
+        android:textSize="10sp"
+        android:layout_below="@+id/welcome1"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "6"
+        android:id="@+id/welcome3"
+        android:layout_toRightOf="@+id/welcome2"
+        android:layout_below="@+id/welcome1"
+        android:textSize="10sp"
+        android:layout_marginTop="20dip"/>
+    
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" restaurants" 
+        android:id="@+id/welcome4"
+        android:layout_toRightOf="@+id/welcome3"
+        android:layout_marginTop="20dip"
+        android:textSize="10sp"
+        android:layout_below="@+id/welcome1"
+        android:textColor="#FFFFFF"/>
         
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="McDonalds" 
+        android:text = "Pasta Bene"
         android:id="@+id/res1"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="20dip"
-        android:layout_below="@+id/welcome1"/>
+        android:onClick="onClick"                
+       android:clickable="true"
+        android:layout_below="@+id/welcome4"/>
+    
+    <ImageView android:id="@+id/ImageView01" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	
+    	android:adjustViewBounds="true"
+    	android:layout_below="@+id/res1"
+	/>
     
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Chipotle" 
+        android:text = "Chipotle"
         android:id="@+id/res2"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="20dip"
-        android:layout_below="@+id/res1"/>
+        android:layout_below="@+id/res1"
+        android:onClick="onClick"                
+       android:clickable="true"/>
     
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="KFC" 
+        android:text = "Star Meats"
         android:id="@+id/res3"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="20dip"
-        android:layout_below="@+id/res2"/>
+        android:layout_below="@+id/res2"
+        android:onClick="onClick"                
+       android:clickable="true"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text = "Mount Everest"
+        android:id="@+id/res5"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/res3"
+        android:onClick="onClick"                
+       android:clickable="true"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text = "Wiki Wiki"
+        android:id="@+id/res6"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/res5"
+        android:onClick="onClick"                
+       android:clickable="true"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text = "Gregorie"
+        android:id="@+id/res7"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/res6"
+        android:onClick="onClick"                
+       android:clickable="true"/>
    
     <Button
         android:layout_width="300px"
         android:layout_height="wrap_content"
         android:text="Place Order" 
         android:id="@+id/backButton"
-        android:layout_below="@+id/res3"        
+        android:layout_below="@+id/res7"        
         android:layout_marginTop="10dip"        
         android:layout_centerHorizontal="true" 
         android:gravity="center_horizontal" 
+        android:onClick="onClick"                
+       android:clickable="true"
             
         />
-    <com.google.android.maps.MapView
-        android:id="@+id/mapview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:apiKey="Your Maps API Key"
-    />
+    
+   
 
 </RelativeLayout>

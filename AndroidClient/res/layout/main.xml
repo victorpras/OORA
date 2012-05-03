@@ -53,5 +53,18 @@
         android:layout_centerHorizontal="true"  
             
         />
+    
+    <Button
+        android:layout_width="300px"
+        android:layout_height="wrap_content"
+        android:text="Restaurant" 
+        android:id="@+id/welcomeRest"
+        android:layout_below="@+id/welcomeButton"        
+        android:layout_marginTop="10dip"        
+        android:layout_centerHorizontal="true"  
+            
+        />
+    
+    
 
 </RelativeLayout>
